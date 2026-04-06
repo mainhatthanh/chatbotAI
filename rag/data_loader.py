@@ -1,19 +1,30 @@
 import json
+
 import pandas as pd
+
+from rag.text_utils import normalize_text, repair_text
+
 
 def load_books(csv_path: str):
     df = pd.read_csv(csv_path)
     documents = []
 
     for _, row in df.iterrows():
+        title = repair_text(row["title"])
+        author = repair_text(row["author"])
+        category = repair_text(row["category"])
+        description = repair_text(row["description"])
+        price = str(row["price"])
+        stock = str(row["stock"])
+
         text = (
-            f"Tên sách: {row['title']}. "
-            f"Tác giả: {row['author']}. "
-            f"Thể loại: {row['category']}. "
-            f"Mô tả: {row['description']}. "
-            f"Giá: {row['price']} đồng. "
-            f"Số lượng còn: {row['stock']}. "
-            f"Từ khóa tìm kiếm: {row['title']}, {row['author']}, {row['category']}."
+            f"Tên sách: {title}. "
+            f"Tác giả: {author}. "
+            f"Thể loại: {category}. "
+            f"Mô tả: {description}. "
+            f"Giá: {price} đồng. "
+            f"Số lượng còn: {stock}. "
+            f"Từ khóa tìm kiếm: {title}, {author}, {category}."
         )
 
         documents.append({
@@ -21,12 +32,18 @@ def load_books(csv_path: str):
             "text": text,
             "source": "books",
             "metadata": {
-                "title": str(row["title"]).lower(),
-                "author": str(row["author"]).lower(),
-                "category": str(row["category"]).lower(),
-                "price": str(row["price"]),
-                "stock": str(row["stock"])
-            }
+                "title": title,
+                "author": author,
+                "category": category,
+                "description": description,
+                "price": price,
+                "stock": stock,
+                "normalized_title": normalize_text(title),
+                "normalized_author": normalize_text(author),
+                "normalized_category": normalize_text(category),
+                "normalized_description": normalize_text(description),
+            },
+            "normalized_text": normalize_text(text),
         })
 
     return documents
@@ -38,15 +55,24 @@ def load_faq(json_path: str):
 
     documents = []
     for i, item in enumerate(faq_data, start=1):
+        question = repair_text(item["question"])
+        answer = repair_text(item["answer"])
         text = (
-            f"Câu hỏi: {item['question']}. "
-            f"Trả lời: {item['answer']}"
+            f"Câu hỏi: {question}. "
+            f"Trả lời: {answer}"
         )
 
         documents.append({
             "id": f"faq_{i}",
             "text": text,
-            "source": "faq"
+            "source": "faq",
+            "metadata": {
+                "question": question,
+                "answer": answer,
+                "normalized_question": normalize_text(question),
+                "normalized_answer": normalize_text(answer),
+            },
+            "normalized_text": normalize_text(text),
         })
 
     return documents

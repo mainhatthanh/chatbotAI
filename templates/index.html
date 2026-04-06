@@ -4,67 +4,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookstore RAG Chatbot</title>
+    <title>BKstore - Nhà sách trực tuyến</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
-    <h1>Chatbot tư vấn sách</h1>
-
-    <div id="chat-box" style="border:1px solid #ccc; padding:10px; height:300px; overflow-y:auto; margin-bottom:10px;">
-    </div>
-
-    <input type="text" id="user-input" placeholder="Nhập câu hỏi..." style="width:70%;">
-    <button onclick="sendMessage()">Gửi</button>
-
-    <script>
-        async function sendMessage() {
-            const input = document.getElementById("user-input");
-            const chatBox = document.getElementById("chat-box");
-            const message = input.value.trim();
-
-            if (!message) return;
-
-            chatBox.innerHTML += `<p><b>Bạn:</b> ${message}</p>`;
-            input.value = "";
-
-            const response = await fetch("/chat", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ message: message })
-            });
-
-            const data = await response.json();
-
-            let docsHtml = "";
-            if (data.retrieved_docs && data.retrieved_docs.length > 0) {
-                docsHtml += `<div style="margin-top:8px; padding:8px; border:1px solid #ddd; background:#f9f9f9;">`;
-                docsHtml += `<b>Tài liệu được truy xuất:</b>`;
-                data.retrieved_docs.forEach((doc, index) => {
-                    docsHtml += `
-                    <div style="margin-top:8px; padding:6px; border-top:1px solid #ccc;">
-                        <div><b>Top ${index + 1}</b></div>
-                        <div><b>ID:</b> ${doc.id}</div>
-                        <div><b>Nguồn:</b> ${doc.source}</div>
-                        <div><b>Distance:</b> ${doc.distance.toFixed(4)}</div>
-                        <div><b>Nội dung:</b> ${doc.text}</div>
-                    </div>
-                `;
-                });
-                docsHtml += `</div>`;
-            }
-
-            chatBox.innerHTML += `
-            <div style="margin-bottom:12px;">
-                <p><b>Bot:</b> ${data.response}</p>
-                ${docsHtml}
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <div class="brand">
+                <div class="brand-logo">📚</div>
+                <div>
+                    <h1>BKstore</h1>
+                    <p>Nhà sách trực tuyến tích hợp trợ lý AI</p>
+                </div>
             </div>
-        `;
 
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
-    </script>
+            <nav class="nav">
+                <a href="#hero">Trang chủ</a>
+                <a href="#books">Sách nổi bật</a>
+                <a href="#features">Tiện ích</a>
+                <a href="#assistant">Trợ lý AI</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <h2>Tìm sách bạn yêu thích nhanh hơn cùng trợ lý ảo AI</h2>
+                    <p>
+                        Khám phá truyện tranh, tiểu thuyết, sách kỹ năng và sách thiếu nhi.
+                        Trợ lý AI có thể hỗ trợ tìm sách, tư vấn theo nhu cầu và giải đáp
+                        các câu hỏi về mua hàng ngay trên website.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#assistant" class="btn btn-primary">Chat với AI ngay</a>
+                        <a href="#books" class="btn btn-secondary">Xem sách nổi bật</a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <strong>24/7</strong>
+                            <span>AI hỗ trợ liên tục</span>
+                        </div>
+                        <div class="stat-card">
+                            <strong>Nhanh</strong>
+                            <span>Tư vấn tìm sách tức thì</span>
+                        </div>
+                        <div class="stat-card">
+                            <strong>Thông minh</strong>
+                            <span>Gợi ý theo nhu cầu</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+
+
+                    <div class="hero-circle"></div>
+                    <div class="hero-book-stack">
+                        <div class="book book-a"></div>
+                        <div class="book book-b"></div>
+                        <div class="book book-c"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="books-section" id="books">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <span class="section-tag">Sách nổi bật</span>
+                        <h3>Một số đầu sách được quan tâm</h3>
+                    </div>
+                </div>
+
+                <div class="book-grid">
+                    <article class="book-card">
+                        <div class="book-cover cover-blue">Doraemon</div>
+                        <div class="book-info">
+                            <h4>Doraemon Tập 1</h4>
+                            <p>Fujiko F Fujio</p>
+                            <span class="category">Truyện tranh</span>
+                            <div class="book-meta">
+                                <strong>25.000đ</strong>
+                                <span>Còn hàng</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="book-card">
+                        <div class="book-cover cover-red">Conan</div>
+                        <div class="book-info">
+                            <h4>Thám tử lừng danh Conan Tập 1</h4>
+                            <p>Gosho Aoyama</p>
+                            <span class="category">Truyện tranh</span>
+                            <div class="book-meta">
+                                <strong>30.000đ</strong>
+                                <span>Còn hàng</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="book-card">
+                        <div class="book-cover cover-green">Harry Potter</div>
+                        <div class="book-info">
+                            <h4>Harry Potter và Hòn đá Phù thủy</h4>
+                            <p>J. K. Rowling</p>
+                            <span class="category">Tiểu thuyết</span>
+                            <div class="book-meta">
+                                <strong>120.000đ</strong>
+                                <span>Còn hàng</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="book-card">
+                        <div class="book-cover cover-gold">Đắc nhân tâm</div>
+                        <div class="book-info">
+                            <h4>Đắc nhân tâm</h4>
+                            <p>Dale Carnegie</p>
+                            <span class="category">Kỹ năng</span>
+                            <div class="book-meta">
+                                <strong>110.000đ</strong>
+                                <span>Còn hàng</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section" id="features">
+            <div class="container">
+                <div class="section-head center">
+                    <span class="section-tag">Điểm nổi bật</span>
+                    <h3>Website bán sách có gì nổi bật?</h3>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔎</div>
+                        <h4>Tìm kiếm nhanh</h4>
+                        <p>Dễ dàng tra cứu sách theo tên sách, tác giả, thể loại hoặc nhu cầu đọc.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h4>AI hỗ trợ mua sách</h4>
+                        <p>Trợ lý ảo AI hỗ trợ tìm sách, giải thích thông tin và trả lời các câu hỏi của khách hàng.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🚚</div>
+                        <h4>Hỗ trợ mua hàng</h4>
+                        <p>Giải đáp về COD, giao hàng, đổi trả và các phương thức thanh toán ngay trong khung chat.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="assistant-section" id="assistant">
+            <div class="container assistant-layout">
+                <div class="assistant-info">
+                    <span class="section-tag">Trợ lý ảo AI</span>
+                    <h3>Chatbot tư vấn sách cho khách hàng</h3>
+
+                    <div class="suggest-box">
+                        <h4>Gợi ý câu hỏi thường được hỏi</h4>
+                        <div class="suggest-list">
+                            <button class="suggest-btn">Có Conan không?</button>
+                            <button class="suggest-btn">Giá Doraemon bao nhiêu?</button>
+                            <button class="suggest-btn">Có thanh toán khi nhận hàng không?</button>
+                            <button class="suggest-btn">Bao lâu thì giao hàng?</button>
+                            <button class="suggest-btn">Có sách của Nguyễn Nhật Ánh không?</button>
+                            <button class="suggest-btn">Gợi ý truyện cho thiếu nhi</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-panel">
+                    <div class="chat-header">
+                        <div class="chat-header-left">
+                            <div class="ai-avatar">AI</div>
+                            <div>
+                                <h4>BKstore Assistant</h4>
+                                <p>Đang sẵn sàng hỗ trợ</p>
+                            </div>
+                        </div>
+                        <span class="online-dot"></span>
+                    </div>
+
+                    <div class="chat-messages" id="chat-messages"></div>
+
+                    <div class="chat-input-area">
+                        <textarea id="user-input" placeholder="Nhập câu hỏi của bạn..."></textarea>
+                        <button id="send-btn">Gửi</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 
 </html>

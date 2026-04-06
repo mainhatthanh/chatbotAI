@@ -19,7 +19,7 @@ def chat():
     if not query:
         return jsonify({"response": "Vui lòng nhập câu hỏi."})
 
-    response, retrieved_docs = pipeline.answer(query, top_k=2)
+    response, retrieved_docs = pipeline.answer(query, top_k=3)
 
     return jsonify({
         "response": response,

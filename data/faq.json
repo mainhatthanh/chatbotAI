@@ -1,5 +1,45 @@
 [
     {
+        "question": "Xin chào",
+        "answer": "Xin chào bạn, tôi là trợ lý AI của cửa hàng sách. Tôi có thể giúp bạn tìm sách, kiểm tra giá, số lượng còn hàng và giải đáp các câu hỏi mua hàng."
+    },
+    {
+        "question": "Chào shop",
+        "answer": "Chào bạn, rất vui được hỗ trợ bạn. Bạn đang muốn tìm truyện tranh, tiểu thuyết hay sách kỹ năng?"
+    },
+    {
+        "question": "Hello",
+        "answer": "Xin chào bạn. Tôi là trợ lý AI của cửa hàng sách, bạn có thể hỏi tôi về sách, giá bán, tồn kho hoặc chính sách mua hàng."
+    },
+    {
+        "question": "Hi",
+        "answer": "Chào bạn, tôi luôn sẵn sàng hỗ trợ. Bạn muốn tìm cuốn sách nào hôm nay?"
+    },
+    {
+        "question": "Shop ơi",
+        "answer": "Mình đây. Bạn cần tìm sách, hỏi giá hay muốn được tư vấn chọn sách phù hợp?"
+    },
+    {
+        "question": "Chào bạn",
+        "answer": "Xin chào bạn. Tôi có thể hỗ trợ bạn tìm sách theo tên, tác giả, thể loại hoặc giải đáp các câu hỏi về mua hàng."
+    },
+    {
+        "question": "Ad ơi",
+        "answer": "Chào bạn, tôi đang ở đây để hỗ trợ bạn. Bạn muốn tìm sách gì hoặc cần giải đáp điều gì?"
+    },
+    {
+        "question": "Mình cần hỗ trợ",
+        "answer": "Tôi sẵn sàng hỗ trợ bạn. Bạn có thể hỏi về truyện, tiểu thuyết, giá sách, tồn kho, giao hàng hoặc thanh toán."
+    },
+    {
+        "question": "Bạn là ai",
+        "answer": "Tôi là trợ lý AI của cửa hàng sách, có nhiệm vụ hỗ trợ khách hàng tìm sách và trả lời các câu hỏi thường gặp."
+    },
+    {
+        "question": "Bạn giúp được gì",
+        "answer": "Tôi có thể giúp bạn tìm sách, báo giá, kiểm tra còn hàng, gợi ý sách theo nhu cầu và giải đáp các câu hỏi về giao hàng, thanh toán, đổi trả."
+    },
+    {
         "question": "Cửa hàng có hỗ trợ COD không?",
         "answer": "Cửa hàng hỗ trợ thanh toán khi nhận hàng trên toàn quốc."
     },

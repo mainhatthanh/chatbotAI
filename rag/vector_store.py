@@ -14,8 +14,13 @@ class VectorStore:
         self.model.fit(embeddings)
 
     def search(self, query_embedding, top_k=3):
+        if not self.documents:
+            return []
+
+        k = min(top_k, len(self.documents))
+
         distances, indices = self.model.kneighbors(
-            [query_embedding], n_neighbors=top_k
+            [query_embedding], n_neighbors=k
         )
 
         results = []
