@@ -1,0 +1,42 @@
+[
+    {
+        "question": "Cửa hàng có hỗ trợ COD không?",
+        "answer": "Cửa hàng hỗ trợ thanh toán khi nhận hàng trên toàn quốc."
+    },
+    {
+        "question": "Thời gian giao hàng là bao lâu?",
+        "answer": "Thời gian giao hàng từ 2 đến 5 ngày tùy khu vực."
+    },
+    {
+        "question": "Cửa hàng có bán truyện tranh như Doraemon và Conan không?",
+        "answer": "Cửa hàng có bán nhiều đầu truyện tranh nổi tiếng như Doraemon Conan và One Piece."
+    },
+    {
+        "question": "Cửa hàng có sách thiếu nhi không?",
+        "answer": "Cửa hàng có nhiều sách thiếu nhi và truyện phù hợp với học sinh nhỏ tuổi."
+    },
+    {
+        "question": "Cửa hàng có tiểu thuyết nổi tiếng không?",
+        "answer": "Cửa hàng có các tiểu thuyết nổi tiếng như Không gia đình Harry Potter Nhà giả kim và nhiều đầu sách khác."
+    },
+    {
+        "question": "Làm sao để biết sách còn hàng?",
+        "answer": "Khách hàng có thể xem số lượng tồn kho trên hệ thống hoặc nhắn tin để cửa hàng kiểm tra."
+    },
+    {
+        "question": "Nếu sách hết hàng thì sao?",
+        "answer": "Nếu sách tạm hết hàng cửa hàng sẽ thông báo và hỗ trợ khách đổi sang sách khác hoặc chờ nhập thêm."
+    },
+    {
+        "question": "Có được đổi trả sách không?",
+        "answer": "Cửa hàng hỗ trợ đổi trả nếu sách bị lỗi in thiếu trang giao sai hoặc hư hỏng khi vận chuyển."
+    },
+    {
+        "question": "Cửa hàng có những hình thức thanh toán nào?",
+        "answer": "Cửa hàng hỗ trợ thanh toán khi nhận hàng chuyển khoản ngân hàng và một số ví điện tử."
+    },
+    {
+        "question": "Cửa hàng có tư vấn chọn sách không?",
+        "answer": "Cửa hàng có hỗ trợ tư vấn chọn truyện tranh tiểu thuyết sách kỹ năng và sách thiếu nhi theo nhu cầu của khách hàng."
+    }
+]

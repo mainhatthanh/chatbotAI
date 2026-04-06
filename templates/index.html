@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore RAG Chatbot</title>
+</head>
+
+<body>
+    <h1>Chatbot tư vấn sách</h1>
+
+    <div id="chat-box" style="border:1px solid #ccc; padding:10px; height:300px; overflow-y:auto; margin-bottom:10px;">
+    </div>
+
+    <input type="text" id="user-input" placeholder="Nhập câu hỏi..." style="width:70%;">
+    <button onclick="sendMessage()">Gửi</button>
+
+    <script>
+        async function sendMessage() {
+            const input = document.getElementById("user-input");
+            const chatBox = document.getElementById("chat-box");
+            const message = input.value.trim();
+
+            if (!message) return;
+
+            chatBox.innerHTML += `<p><b>Bạn:</b> ${message}</p>`;
+            input.value = "";
+
+            const response = await fetch("/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ message: message })
+            });
+
+            const data = await response.json();
+
+            let docsHtml = "";
+            if (data.retrieved_docs && data.retrieved_docs.length > 0) {
+                docsHtml += `<div style="margin-top:8px; padding:8px; border:1px solid #ddd; background:#f9f9f9;">`;
+                docsHtml += `<b>Tài liệu được truy xuất:</b>`;
+                data.retrieved_docs.forEach((doc, index) => {
+                    docsHtml += `
+                    <div style="margin-top:8px; padding:6px; border-top:1px solid #ccc;">
+                        <div><b>Top ${index + 1}</b></div>
+                        <div><b>ID:</b> ${doc.id}</div>
+                        <div><b>Nguồn:</b> ${doc.source}</div>
+                        <div><b>Distance:</b> ${doc.distance.toFixed(4)}</div>
+                        <div><b>Nội dung:</b> ${doc.text}</div>
+                    </div>
+                `;
+                });
+                docsHtml += `</div>`;
+            }
+
+            chatBox.innerHTML += `
+            <div style="margin-bottom:12px;">
+                <p><b>Bot:</b> ${data.response}</p>
+                ${docsHtml}
+            </div>
+        `;
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+</body>
+
+</html>
