@@ -2,7 +2,7 @@ from rag.data_loader import load_all_documents
 from rag.embedder import Embedder
 from rag.generator import Generator
 from rag.retriever import Retriever
-from rag.text_utils import detect_book_intent, normalize_text, tokenize
+from rag.text_utils import detect_book_intent, detect_faq_intent, normalize_text, tokenize
 from rag.vector_store import VectorStore
 
 
@@ -34,8 +34,17 @@ class RAGPipeline:
 
     def answer(self, query: str, top_k=3):
         candidate_k = max(top_k + 2, 5)
-        book_results = self.books_retriever.retrieve_hybrid(query, top_k=candidate_k)
+        book_intent = self.is_book_query(query)
+        faq_intent = detect_faq_intent(query)
+
         faq_results = self.faq_retriever.retrieve_hybrid(query, top_k=candidate_k)
+
+        if faq_intent and not book_intent:
+            retrieved_docs = faq_results[:top_k]
+            response = self.generator.generate(query, retrieved_docs)
+            return response, retrieved_docs
+
+        book_results = self.books_retriever.retrieve_hybrid(query, top_k=candidate_k)
         retrieved_docs = self._rerank_results(query, book_results, faq_results, top_k)
         response = self.generator.generate(query, retrieved_docs)
         return response, retrieved_docs
@@ -44,6 +53,7 @@ class RAGPipeline:
         query_norm = normalize_text(query)
         query_tokens = set(tokenize(query))
         book_intent = self.is_book_query(query)
+        faq_intent = detect_faq_intent(query)
         combined = []
         has_exact_book_match = False
 
@@ -77,6 +87,8 @@ class RAGPipeline:
             score = item.get("hybrid_score", 0.0)
             if not book_intent:
                 score += 0.35
+            if faq_intent and not book_intent:
+                score += 0.9
             if has_exact_book_match:
                 score -= 0.6
 

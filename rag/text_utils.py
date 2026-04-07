@@ -25,6 +25,7 @@ def repair_text(text):
 
 
 def remove_accents(text):
+    text = text.replace("đ", "d").replace("Đ", "D")
     normalized = unicodedata.normalize("NFKD", text)
     return "".join(ch for ch in normalized if not unicodedata.combining(ch))
 
@@ -46,17 +47,42 @@ def contains_any(text, phrases):
 
 
 def detect_book_intent(query):
-    return contains_any(query, [
-        "sach", "truyen", "tieu thuyet", "tac gia", "gia", "con hang",
-        "ton kho", "nha gia kim", "doraemon", "conan", "harry potter",
+    normalized = normalize_text(query)
+
+    explicit_book_phrases = [
+        "goi y sach", "tim sach", "mua sach", "cuon sach", "quyen sach",
+        "truyen tranh", "tieu thuyet", "ten sach", "sach nao", "truyen nao",
+        "sach", "truyen",
+    ]
+    known_entities = [
+        "nha gia kim", "doraemon", "conan", "harry potter",
         "one piece", "khong gia dinh", "dac nhan tam", "nguyen nhat anh",
-        "goi y sach", "tim sach", "mua sach",
+    ]
+    book_attribute_phrases = [
+        "tac gia", "viet boi", "gia sach", "sach gia bao nhieu",
+        "con hang", "ton kho", "het hang",
+    ]
+
+    return (
+        any(normalize_text(phrase) in normalized for phrase in explicit_book_phrases)
+        or any(normalize_text(phrase) in normalized for phrase in known_entities)
+        or any(normalize_text(phrase) in normalized for phrase in book_attribute_phrases)
+    )
+
+
+def detect_faq_intent(query):
+    return contains_any(query, [
+        "doi tra", "tra hang", "hoan tien", "chinh sach", "giao hang",
+        "ship", "van chuyen", "thanh toan", "cod", "chuyen khoan",
+        "phuong thuc thanh toan", "bao lau", "thoi gian giao hang",
+        "ho tro", "tu van", "cua hang",
     ])
 
 
 def detect_list_intent(query):
     return contains_any(query, [
-        "nao", "goi y", "de xuat", "danh sach", "nhung sach", "co sach",
+        "goi y", "de xuat", "danh sach", "nhung sach", "co sach nao",
+        "sach nao", "truyen nao",
     ])
 
 
