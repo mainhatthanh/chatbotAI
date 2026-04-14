@@ -2,7 +2,7 @@ import json
 
 import pandas as pd
 
-from rag.text_utils import normalize_text, repair_text
+from rag.query import normalize_text, repair_text
 
 
 def load_books(csv_path: str):

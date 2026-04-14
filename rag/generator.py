@@ -1,8 +1,16 @@
-from rag.text_utils import (
+from rag.book_response import (
+    filter_books_for_display,
+    format_book_list,
+    matched_books,
+    no_description_match_message,
+    should_list_books,
+)
+from rag.query import (
     detect_author_intent,
-    detect_list_intent,
+    detect_description_intent,
     detect_price_intent,
     detect_stock_intent,
+    score_book_match,
 )
 
 
@@ -40,19 +48,19 @@ class Generator:
         if not top_books:
             return "Xin lỗi, tôi chưa tìm thấy sách phù hợp."
 
-        main_book = top_books[0]
+        main_book = max(
+            top_books,
+            key=lambda book: score_book_match(query, book.get("metadata", {})),
+        )
         info = main_book.get("metadata", {})
 
-        if detect_list_intent(query):
-            lines = ["Tôi gợi ý một vài sách phù hợp:"]
-            for book in top_books[:3]:
-                meta = book.get("metadata", {})
-                lines.append(
-                    f"- {meta.get('title', 'Không rõ')} | tác giả: {meta.get('author', 'Không rõ')} | "
-                    f"thể loại: {meta.get('category', 'Không rõ')} | giá: {meta.get('price', 'Không rõ')} đồng | "
-                    f"còn: {meta.get('stock', 'Không rõ')}"
-                )
-            return "\n".join(lines)
+        if should_list_books(query):
+            if detect_description_intent(query) and not matched_books(query, top_books):
+                return no_description_match_message()
+            return format_book_list(filter_books_for_display(query, top_books))
+
+        if detect_author_intent(query):
+            return f"{info.get('title', 'Cuon sach nay')} do {info.get('author', 'Khong ro')} viết."
 
         if detect_price_intent(query) and detect_stock_intent(query):
             return (
@@ -68,11 +76,6 @@ class Generator:
         if detect_stock_intent(query):
             return (
                 f"{info.get('title', 'Cuốn sách này')} hiện còn {info.get('stock', 'Không rõ')} cuốn trong kho."
-            )
-
-        if detect_author_intent(query):
-            return (
-                f"{info.get('title', 'Cuốn sách này')} do {info.get('author', 'Không rõ')} viết."
             )
 
         return (

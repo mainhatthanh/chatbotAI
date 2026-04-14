@@ -96,3 +96,19 @@ def detect_stock_intent(query):
 
 def detect_author_intent(query):
     return contains_any(query, ["tac gia", "viet boi", "cua ai"])
+
+
+# Legacy compatibility layer: prefer rag.query / rag.query_utils for new code.
+from rag.query_utils import (  # noqa: E402
+    contains_any,
+    detect_author_intent,
+    detect_book_intent,
+    detect_faq_intent,
+    detect_list_intent,
+    detect_price_intent,
+    detect_stock_intent,
+    normalize_text,
+    remove_accents,
+    repair_text,
+    tokenize,
+)
