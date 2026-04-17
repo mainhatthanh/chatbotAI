@@ -3,6 +3,7 @@ from rag.query import (
     detect_description_intent,
     detect_existence_intent,
     detect_faq_intent,
+    detected_categories,
     normalize_text,
     score_book_match,
     tokenize,
@@ -26,6 +27,7 @@ def rerank_results(query, book_results, faq_results, top_k, book_intent):
     query_norm = normalize_text(query)
     query_tokens = set(tokenize(query))
     faq_intent = detect_faq_intent(query)
+    requested_categories = detected_categories(query)
     combined = []
     has_exact_book_match = False
 
@@ -35,6 +37,9 @@ def rerank_results(query, book_results, faq_results, top_k, book_intent):
             score += 0.75
 
         metadata = item["document"].get("metadata", {})
+        if requested_categories and metadata.get("normalized_category") not in requested_categories:
+            continue
+
         score += score_book_match(query, metadata)
         normalized_title = metadata.get("normalized_title", "")
         if normalized_title and normalized_title in query_norm:
@@ -57,6 +62,9 @@ def rerank_results(query, book_results, faq_results, top_k, book_intent):
         combined.append(ranked)
 
     for item in faq_results:
+        if requested_categories and combined:
+            continue
+
         score = item.get("hybrid_score", 0.0)
         if not book_intent:
             score += 0.35

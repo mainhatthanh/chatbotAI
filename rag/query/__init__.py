@@ -9,6 +9,7 @@ from rag.query.intents import (
     detect_list_intent,
     detect_price_intent,
     detect_stock_intent,
+    detected_categories,
 )
 from rag.query.normalize import (
     QUERY_STOPWORDS,
@@ -38,6 +39,7 @@ __all__ = [
     "detect_list_intent",
     "detect_price_intent",
     "detect_stock_intent",
+    "detected_categories",
     "extract_volume_number",
     "normalize_text",
     "remove_accents",

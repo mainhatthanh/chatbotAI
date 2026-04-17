@@ -71,7 +71,17 @@ def detect_existence_intent(query):
 
 
 def detect_category_intent(query):
-    return any(category in normalize_text(query) for category in KNOWN_CATEGORIES)
+    return bool(detected_categories(query))
+
+
+def detected_categories(query):
+    normalized = normalize_text(query)
+    padded_query = f" {normalized} "
+    return [
+        category
+        for category in KNOWN_CATEGORIES
+        if f" {category} " in padded_query
+    ]
 
 
 def detect_description_intent(query):

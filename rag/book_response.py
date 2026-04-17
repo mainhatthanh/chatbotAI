@@ -3,6 +3,7 @@ from rag.query import (
     detect_description_intent,
     detect_existence_intent,
     detect_list_intent,
+    detected_categories,
     score_book_match,
 )
 
@@ -25,6 +26,13 @@ def ranked_books(query, books):
 
 
 def matched_books(query, books):
+    requested_categories = detected_categories(query)
+    if requested_categories:
+        books = [
+            book for book in books
+            if book.get("metadata", {}).get("normalized_category") in requested_categories
+        ]
+
     scored_books = sorted(score_books(query, books), key=lambda item: item[1], reverse=True)
     top_match_score = max((score for _, score in scored_books), default=0.0)
     min_match_score = max(0.6, top_match_score * 0.45)
@@ -51,10 +59,20 @@ def should_list_books(query):
 
 
 def filter_books_for_display(query, books):
+    requested_categories = detected_categories(query)
+    if requested_categories:
+        books = [
+            book for book in books
+            if book.get("metadata", {}).get("normalized_category") in requested_categories
+        ]
+
     ranked = ranked_books(query, books)
     matched = matched_books(query, books)
 
     if detect_description_intent(query):
+        return matched
+
+    if detect_category_intent(query):
         return matched
 
     return matched or ranked
