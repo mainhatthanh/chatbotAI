@@ -44,7 +44,7 @@ def matched_books(query, books):
         min_match_score = max(0.6, top_match_score * 0.75)
 
     if detect_description_intent(query):
-        min_match_score = max(0.6, top_match_score * 0.55)
+        min_match_score = max(0.7, top_match_score * 0.75)
 
     return [book for book, score in scored_books if score >= min_match_score]
 

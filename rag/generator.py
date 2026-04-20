@@ -54,7 +54,7 @@ class Generator:
         )
         info = main_book.get("metadata", {})
 
-        if should_list_books(query):
+        if should_list_books(query) or self._should_list_multiple_books(query, top_books):
             if detect_description_intent(query) and not matched_books(query, top_books):
                 return no_description_match_message()
             return format_book_list(filter_books_for_display(query, top_books))
@@ -85,3 +85,9 @@ class Generator:
             f"Còn: {info.get('stock', 'Không rõ')}. "
             f"Mô tả ngắn: {info.get('description', 'Không rõ')}"
         )
+    def _should_list_multiple_books(self, query, books):
+        if len(books) < 2:
+            return False
+        if detect_author_intent(query) or detect_price_intent(query) or detect_stock_intent(query):
+            return False
+        return True

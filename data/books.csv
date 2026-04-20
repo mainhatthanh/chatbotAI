@@ -29,3 +29,73 @@ id,title,author,category,description,price,stock
 28,Suối nguồn,Ayn Rand,Tiểu thuyết,Tác phẩm kinh điển về sự kiên định và triết lý cá nhân trong kiến trúc,195000,5
 29,Kimetsu no Yaiba Tập 1,Koyoharu Gotouge,Truyện tranh,Hành trình diệt quỷ để cứu em gái của chàng trai trẻ Tanjiro,30000,45
 30,Tiếng gọi nơi hoang dã,Jack London,Tiểu thuyết,Câu chuyện về chú chó Buck trở về với bản năng hoang dã nơi phương Bắc,68000,12
+31,Sapiens: Lược sử loài người,Yuval Noah Harari,Khoa học,Khám phá quá trình tiến hóa và văn minh của nhân loại từ thuở sơ khai đến hiện đại,150000,9
+32,Homo Deus: Lược sử tương lai,Yuval Noah Harari,Khoa học,Nhìn về tương lai của nhân loại và công nghệ AI trong thế kỷ 21,160000,7
+33,7 Thói quen của người thành đạt,Stephen R Covey,Kỹ năng,Cẩm nang thực hành giúp nâng cao hiệu suất và phát triển bản thân,130000,12
+34,Dạy con làm giàu,Robert T Kiyosaki,Kỹ năng,Những bài học tài chính và sự độc lập tài chính dành cho gia đình,98000,10
+35,Totto-chan bên cửa sổ,Tetsuko Kuroyanagi,Tiểu thuyết,Câu chuyện ấm áp về tuổi thơ và ngôi trường đặc biệt ở Nhật Bản,85000,14
+36,Bí mật tư duy triệu phú,T. Harv Eker,Kỹ năng,Sách hướng dẫn thay đổi tư duy để xây dựng thịnh vượng và giàu có,115000,11
+37,Đời thay đổi khi ta thay đổi,Nguyễn Phương Mai,Kỹ năng,Những bài học đổi mới bản thân và khởi tạo hành trình sống ý nghĩa,90000,16
+38,Biết mình biết người,Sun Tzu,Kỹ năng,Bài học chiến lược trong quản lý bản thân và đối nhân xử thế từ tác phẩm cổ điển,105000,10
+39,Chí Phèo,Nam Cao,Tiểu thuyết,Tác phẩm phản ánh cuộc đời bi kịch của người nông dân quê Việt Nam,75000,12
+40,Nhật ký Anne Frank,Anne Frank,Tiểu thuyết,Câu chuyện cảm động ghi lại cuộc sống ẩn náu của Anne trong Thế chiến II,90000,6
+41,Vũ trụ trong vỏ hạt dẻ,Stephen Hawking,Khoa học,Giải thích các khái niệm khoa học vũ trụ theo cách dễ hiểu cho độc giả,140000,8
+42,Những người khốn khổ,Victor Hugo,Tiểu thuyết,Câu chuyện về tình yêu và công lý giữa những số phận thăng trầm ở Pháp,135000,6
+43,Làm chủ cảm xúc,Daniel Goleman,Kỹ năng,Hướng dẫn hiểu rõ cảm xúc và cải thiện mối quan hệ với chính mình và người khác,120000,9
+44,Đi tìm lẽ sống,Viktor E Frankl,Tiểu thuyết,Sách triết lý về ý nghĩa cuộc sống dựa trên trải nghiệm trại tập trung,98000,7
+45,Đảo giấu vàng,Robert Louis Stevenson,Tiểu thuyết,Cuộc phiêu lưu săn kho báu trên hòn đảo xa xôi đầy bí mật,88000,12
+46,Sách rừng,Rudyard Kipling,Tiểu thuyết,Tuyển tập câu chuyện về cậu bé Mowgli và thế giới động vật ở Ấn Độ,90000,14
+47,Cuốn theo chiều gió,Margaret Mitchell,Tiểu thuyết,Tác phẩm lãng mạn huyền thoại về nữ anh hùng Scarlett O Hara trong cuộc chiến Mỹ,150000,5
+48,Trên đường,Jack Kerouac,Tiểu thuyết,Cuộc hành trình tìm tự do và bản ngã giữa những con đường Mỹ,110000,8
+49,Chúa tể những chiếc nhẫn: Hiệp hội nhẫn,John Ronald Reuel Tolkien,Tiểu thuyết,Bắt đầu hành trình tiêu diệt cái nhẫn và cứu lấy Trung Địa,180000,6
+50,Chúa tể những chiếc nhẫn: Hai tòa tháp,John Ronald Reuel Tolkien,Tiểu thuyết,Hành trình tiếp tục của anh hùng và cuộc chiến chống lại thế lực đen tối,180000,6
+51,Chúa tể những chiếc nhẫn: Nhà vua trở lại,John Ronald Reuel Tolkien,Tiểu thuyết,Kết thúc hoành tráng của cuộc chiến giải phóng Trung Địa,190000,5
+52,Người về từ Sao Hỏa,Andy Weir,Tiểu thuyết,Cuộc sống sinh tồn của nhà du hành vũ trụ mắc kẹt trên hành tinh đỏ,140000,7
+53,Những người bạn kỳ diệu,Enid Blyton,Thiếu nhi,Câu chuyện về nhóm bạn và những cuộc phiêu lưu kỳ thú tại nông trại,70000,20
+54,Seven Deadly Sins Tập 1,Nakaba Suzuki,Truyện tranh,Hành trình của nhóm hiệp sĩ giải cứu vương quốc và giành lại danh dự,32000,21
+55,My Hero Academia Tập 1,Kohei Horikoshi,Truyện tranh,Bộ truyện siêu anh hùng về cậu học sinh Deku và giấc mơ trở thành anh hùng,32000,20
+56,Bleach Tập 1,Tite Kubo,Truyện tranh,Câu chuyện về cậu bé có khả năng nhìn thấy hồn ma và chiến đấu với ác quỷ,28000,22
+57,Tokyo Ghoul Tập 1,Sui Ishida,Truyện tranh,Hành trình của cậu sinh viên bị biến thành ghoul và sống giữa hai thế giới,32000,19
+58,Death Note Tập 1,Tsugumi Ohba,Truyện tranh,Sự đối đầu giữa học sinh trí tuệ và kẻ quản phạt tử,28000,22
+59,Thám tử Kindaichi Tập 1,Yozaburo Kanari,Truyện tranh,Học sinh thám tử giải mã những vụ án ly kỳ,28000,24
+60,Naruto Tập 2,Masashi Kishimoto,Truyện tranh,Tiếp tục hành trình của Naruto với những trận đánh và bạn bè mới,28000,33
+61,One Piece Tập 2,Eiichiro Oda,Truyện tranh,Chuyến phiêu lưu tiếp theo của Luffy cùng băng Mũ Rơm trên biển cả,28000,29
+62,Dragon Ball Z Tập 1,Akira Toriyama,Truyện tranh,Khởi đầu hành trình mới với sức mạnh siêu nhiên của Goku,28000,26
+63,One Piece Tập 3,Eiichiro Oda,Truyện tranh,Những trận đấu đầu tiên của Luffy với hải tặc và hải quân,28000,26
+64,Attack on Titan Tập 2,Hajime Isayama,Truyện tranh,Sâu hơn vào thế giới bị khủng bố bởi người khổng lồ ăn thịt người,32000,18
+65,Black Clover Tập 1,Yuki Tabata,Truyện tranh,Cuộc đời của cậu bé không phép thuật nhưng mơ ước trở thành Ma thuật Hoàng gia,28000,21
+66,Jujutsu Kaisen Tập 1,Gege Akutami,Truyện tranh,Hành trình học sinh săn quỷ và giải cứu thế giới khỏi lời nguyền,32000,20
+67,Demon Slayer Tập 2,Koyoharu Gotouge,Truyện tranh,Tiếp tục hành trình chiến đấu diệt quỷ và bảo vệ em gái,30000,40
+68,Vinland Saga Tập 1,Makoto Yukimura,Truyện tranh,Cuộc phiêu lưu Viking tìm kiếm danh dự và trả thù,32000,18
+69,Bí quyết làm giàu của người trẻ,Robert T Kiyosaki,Kỹ năng,Những nguyên tắc tài chính đơn giản dành cho bạn trẻ,97000,12
+70,Cách tư duy để thành công,Napoleon Hill,Kỹ năng,Bí quyết từ nhiều người thành đạt và tư duy làm giàu,110000,10
+71,Thiên nhiên kỳ diệu,David Attenborough,Khoa học,Những khám phá về hệ sinh thái và loài động vật trên trái đất,145000,6
+72,Khoa học của sự giàu có,Wallace D Wattles,Kỹ năng,Luận giải về cách tư duy và hành động để đạt được thịnh vượng,98000,11
+73,Sống tối giản,Francis Wade,Kỹ năng,Hướng dẫn sống nhẹ nhàng hơn bằng cách giảm bớt vật chất và stress,105000,14
+74,Nghệ thuật tinh tế của việc không quan tâm,Mark Manson,Kỹ năng,Cách tập trung vào điều thực sự quan trọng và bỏ bớt áp lực trong cuộc sống,125000,9
+75,Bí mật của may mắn,Richard Wiseman,Khoa học,Những nghiên cứu về lý do một số người may mắn hơn người khác,135000,8
+76,Cuộc cách mạng thói quen,James Clear,Kỹ năng,Phương pháp xây dựng thói quen tốt và thay đổi cuộc sống từng chút,128000,13
+77,Con đường của nghệ sĩ,Julia Cameron,Kỹ năng,Cẩm nang sáng tạo giúp mở khóa năng lực nghệ thuật và đam mê,115000,10
+78,Những người bạn nhỏ,Elisabeth Beresford,Thiếu nhi,Câu chuyện ngộ nghĩnh về những sinh vật nhỏ và tình bạn,68000,20
+79,Từ tốt đến vĩ đại,Jim Collins,Kỹ năng,Nghiên cứu về những doanh nghiệp xuất sắc và yếu tố đưa họ lên tầm cao mới,145000,8
+80,Người nghệ sĩ tự do,Steven Pressfield,Kỹ năng,Giải phóng bản thân khỏi kháng cự để theo đuổi đam mê sáng tạo,118000,11
+81,Sự im lặng của bầy cừu,Thomas Harris,Tiểu thuyết,Cuộc săn lùng một kẻ sát nhân giả danh và cuộc đối đầu gay cấn,160000,5
+82,Gone Girl,Gillian Flynn,Tiểu thuyết,Tiểu thuyết ly kỳ về cuộc hôn nhân đầy bí ẩn và phản bội,150000,7
+83,Hồi ức của Sherlock Holmes,Arthur Conan Doyle,Tiểu thuyết,Tuyển tập truyện trinh thám tiếp theo với nhiều vụ án rắc rối,135000,9
+84,Bí ẩn ngôi nhà ma,Arthur Conan Doyle,Tiểu thuyết,Truyện trinh thám bí ẩn xoay quanh ngôi nhà cũ và sự thật ẩn giấu,98000,11
+85,Người bán hàng kỳ diệu,Og Mandino,Kỹ năng,Sách khích lệ sự kiên trì và niềm tin vào khả năng thay đổi bản thân,99000,12
+86,Công thức triệu phú,Tony Robbins,Kỹ năng,Chiến lược tài chính và tư duy làm giàu cho thế hệ mới,120000,10
+87,Mật mã Olympos,Rick Riordan,Tiểu thuyết,Cuộc phiêu lưu của nhóm thiếu niên trong thế giới thần thoại Hy Lạp,130000,12
+88,Harry Potter và Phòng chứa Bí mật,J K Rowling,Tiểu thuyết,Harry đối mặt với bí ẩn trong ngôi trường phù thủy Hogwarts,120000,9
+89,Harry Potter và Tên tù nhân Azkaban,J K Rowling,Tiểu thuyết,Harry khám phá quá khứ và đối mặt với kẻ thù mới nguy hiểm,120000,8
+90,Đại dương xanh không giới hạn,Renée Mauborgne,Kỹ năng,Chiến lược đổi mới tạo ra thị trường mới và tránh cạnh tranh khốc liệt,140000,7
+91,Tư duy phản biện,Richard Paul,Khoa học,Hướng dẫn rèn luyện tư duy logic và giải quyết vấn đề hiệu quả,132000,10
+92,Ăn cầu nguyện và yêu,Elizabeth Gilbert,Tiểu thuyết,Câu chuyện chân thực về hành trình tìm kiếm bản thân trên khắp thế giới,145000,8
+93,Kafka bên bờ biển,Haruki Murakami,Tiểu thuyết,Tác phẩm kỳ ảo về số phận và cuộc hành trình tâm linh,150000,6
+94,1Q84,Haruki Murakami,Tiểu thuyết,Hành trình kỳ bí giữa hai thế giới song song và tình yêu,170000,5
+95,Kiêu hãnh và định kiến,Jane Austen,Tiểu thuyết,Truyện tình lịch sử về hôn nhân và giai cấp ở nước Anh thời Regency,130000,9
+96,Cô Tấm ngày nay,Nguyễn Nhật Ánh,Thiếu nhi,Câu chuyện hiện đại về cô bé hiền hậu và hành trình vượt khó,80000,14
+97,Đừng bao giờ đi ăn một mình,Keith Ferrazzi,Kỹ năng,Chiến lược xây dựng mạng lưới quan hệ để thành công trong công việc,120000,11
+98,Nghệ thuật chiến tranh,Sun Tzu,Kỹ năng,Tác phẩm chiến lược cổ điển về đối nhân xử thế và quản lý hiệu quả,105000,12
+99,Cuộc sống không giới hạn,Nick Vujicic,Kỹ năng,Câu chuyện truyền cảm hứng về niềm tin và vượt qua nghịch cảnh,98000,13
+100,Đàn ông sao Hỏa đàn bà sao Kim,John Gray,Kỹ năng,Giải mã khác biệt giới tính trong giao tiếp và xây dựng mối quan hệ bền vững,125000,10

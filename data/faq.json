@@ -40,7 +40,7 @@
         "answer": "Tôi có thể giúp bạn tìm sách, báo giá, kiểm tra còn hàng, gợi ý sách theo nhu cầu và giải đáp các câu hỏi về giao hàng, thanh toán, đổi trả."
     },
     {
-        "question": "Cửa hàng có hỗ trợ COD không?",
+        "question": "Cửa hàng có hỗ trợ thanh toán sau khi nhận hàng không?",
         "answer": "Cửa hàng hỗ trợ thanh toán khi nhận hàng trên toàn quốc."
     },
     {
@@ -48,16 +48,8 @@
         "answer": "Thời gian giao hàng từ 2 đến 5 ngày tùy khu vực."
     },
     {
-        "question": "Cửa hàng có bán truyện tranh như Doraemon và Conan không?",
-        "answer": "Cửa hàng có bán nhiều đầu truyện tranh nổi tiếng như Doraemon Conan và One Piece."
-    },
-    {
         "question": "Cửa hàng có sách thiếu nhi không?",
         "answer": "Cửa hàng có nhiều sách thiếu nhi và truyện phù hợp với học sinh nhỏ tuổi."
-    },
-    {
-        "question": "Cửa hàng có tiểu thuyết nổi tiếng không?",
-        "answer": "Cửa hàng có các tiểu thuyết nổi tiếng như Không gia đình Harry Potter Nhà giả kim và nhiều đầu sách khác."
     },
     {
         "question": "Làm sao để biết sách còn hàng?",
@@ -78,5 +70,45 @@
     {
         "question": "Cửa hàng có tư vấn chọn sách không?",
         "answer": "Cửa hàng có hỗ trợ tư vấn chọn truyện tranh tiểu thuyết sách kỹ năng và sách thiếu nhi theo nhu cầu của khách hàng."
+    },
+    {
+        "question": "Tôi có thể đặt trước sách chưa có hàng không?",
+        "answer": "Cửa hàng nhận đặt trước với một số đầu sách, bạn có thể để lại thông tin để chúng tôi báo khi có hàng."
+    },
+    {
+        "question": "Phí vận chuyển bao nhiêu?",
+        "answer": "Phí vận chuyển tùy địa chỉ từ 20.000 đến 50.000 đồng, với nhiều ưu đãi miễn phí giao hàng cho đơn lớn."
+    },
+    {
+        "question": "Cửa hàng thanh toán bằng ví điện tử nào?",
+        "answer": "Cửa hàng hỗ trợ thanh toán khi nhận hàng, chuyển khoản ngân hàng và một số ví điện tử phổ biến như Momo và ZaloPay."
+    },
+    {
+        "question": "Cửa hàng có gói quà tặng không?",
+        "answer": "Chúng tôi có hỗ trợ gói quà tặng cho sách mua làm quà với phí dịch vụ kèm theo."
+    },
+    {
+        "question": "Tôi muốn mua sách cho học sinh tiểu học thì chọn thể loại nào?",
+        "answer": "Bạn có thể chọn sách thiếu nhi, truyện tranh hoặc tiểu thuyết nhẹ nhàng phù hợp theo lứa tuổi và sở thích của bé."
+    },
+    {
+        "question": "Tôi muốn đổi sách vì in lỗi thì làm sao?",
+        "answer": "Nếu sách bị lỗi in, thiếu trang hoặc giao sai, cửa hàng sẽ hỗ trợ đổi trả theo chính sách trong vòng 7 ngày."
+    },
+    {
+        "question": "Tôi có thể hủy đơn hàng không?",
+        "answer": "Bạn có thể hủy đơn trước khi sách được đóng gói hoặc giao cho đơn vị vận chuyển. Hãy liên hệ ngay để được hỗ trợ."
+    },
+    {
+        "question": "Cửa hàng có chương trình ưu đãi hay giảm giá không?",
+        "answer": "Cửa hàng thường xuyên có chương trình giảm giá và ưu đãi cho khách hàng mua sách theo set hoặc mua số lượng lớn."
+    },
+    {
+        "question": "Làm sao để tìm sách theo tác giả?",
+        "answer": "Bạn chỉ cần hỏi tên tác giả hoặc tên sách, trợ lý AI sẽ tìm nhanh các đầu sách theo yêu cầu."
+    },
+    {
+        "question": "Sách mới nhập có được cập nhật thường xuyên không?",
+        "answer": "Cửa hàng liên tục cập nhật các đầu sách mới và thông báo khi có sách bán chạy hoặc sách mới về."
     }
 ]

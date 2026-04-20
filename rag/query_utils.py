@@ -5,7 +5,7 @@ import unicodedata
 SUSPICIOUS_MOJIBAKE_MARKERS = ("Ãƒ", "Ã„", "Ã†", "Ã¡Â»", "Ã¡Âº", "Ã¡", "Ã‚")
 QUERY_STOPWORDS = {
     "ai", "ay", "ban", "bao", "biet", "cho", "chu", "co", "con", "cuon",
-    "cua", "duoc", "gi", "giup", "hay", "het", "khong", "la", "loai", "may",
+    "cau", "cua", "duoc", "gi", "giup", "hay", "het", "khong", "la", "loai", "may",
     "minh", "mot", "nao", "nay", "nhi", "nhieu", "noi", "o", "sach", "shop",
     "so", "tap", "the", "thi", "toi", "tra", "trong", "tu", "van", "ve", "voi",
 }
@@ -116,7 +116,7 @@ def score_book_match(query, metadata):
     score += 0.4 * sum(1 for token in author_tokens if token in query_tokens)
 
     description_tokens = [token for token in description.split() if len(token) > 2]
-    score += 0.8 * sum(1 for token in description_tokens if token in query_tokens)
+    score += 0.6 * sum(1 for token in description_tokens if token in query_tokens)
 
     query_volume = extract_volume_number(query)
     title_volume = extract_volume_number(title)

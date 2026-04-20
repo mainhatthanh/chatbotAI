@@ -40,7 +40,7 @@ def chat():
     if not query:
         return jsonify({"response": "Vui lòng nhập câu hỏi."})
 
-    response, retrieved_docs = get_pipeline().answer(query, top_k=3)
+    response, retrieved_docs = get_pipeline().answer(query, top_k=6)
 
     return jsonify({
         "response": response,

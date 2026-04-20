@@ -29,6 +29,7 @@ def detect_book_intent(query):
         "goi y sach", "tim sach", "mua sach", "cuon sach", "quyen sach",
         "truyen tranh", "tieu thuyet", "ten sach", "sach nao", "truyen nao",
         "gioi thieu sach", "tim truyen", "mua truyen",
+        "tu van", "tu van sach", "tu van truyen"
     ]
     known_entities = [
         "nha gia kim", "doraemon", "conan", "harry potter",
@@ -62,6 +63,7 @@ def detect_list_intent(query):
     return contains_any(query, [
         "goi y", "de xuat", "danh sach", "nhung sach", "co sach nao",
         "sach nao", "truyen nao", "nhung cuon nao", "cuon nao",
+        "tu van", "tu van sach", "tu van truyen"
     ])
 
 
