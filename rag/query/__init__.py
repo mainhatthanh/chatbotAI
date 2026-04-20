@@ -15,11 +15,13 @@ from rag.query.normalize import (
     QUERY_STOPWORDS,
     SUSPICIOUS_MOJIBAKE_MARKERS,
     contains_any,
+    contains_similar_token,
     content_tokens,
     extract_volume_number,
     normalize_text,
     remove_accents,
     repair_text,
+    similar_token_score,
     tokenize,
 )
 from rag.query.scoring import score_book_match
@@ -29,6 +31,7 @@ __all__ = [
     "QUERY_STOPWORDS",
     "SUSPICIOUS_MOJIBAKE_MARKERS",
     "contains_any",
+    "contains_similar_token",
     "content_tokens",
     "detect_author_intent",
     "detect_book_intent",
@@ -44,6 +47,7 @@ __all__ = [
     "normalize_text",
     "remove_accents",
     "repair_text",
+    "similar_token_score",
     "score_book_match",
     "tokenize",
 ]

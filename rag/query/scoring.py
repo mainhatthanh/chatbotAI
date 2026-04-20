@@ -1,7 +1,13 @@
-from rag.query.normalize import content_tokens, extract_volume_number, normalize_text
+from rag.query.normalize import (
+    contains_similar_token,
+    content_tokens,
+    extract_volume_number,
+    normalize_text,
+)
 
 
 def score_book_match(query, metadata):
+    """Diem phu rieng cho sach, dung khi can chon sach chinh xac nhat."""
     query_norm = normalize_text(query)
     query_tokens = set(content_tokens(query))
     title = metadata.get("normalized_title", "")
@@ -20,7 +26,12 @@ def score_book_match(query, metadata):
         score += 3.2
 
     title_tokens = [token for token in title.split() if len(token) > 2 and token != "tap"]
-    score += 0.6 * sum(1 for token in title_tokens if token in query_tokens)
+    exact_title_token_matches = sum(1 for token in title_tokens if token in query_tokens)
+    score += 1.8 * exact_title_token_matches
+
+    # Fuzzy title match sua cac loi go gan dung nhu "dordaemon" -> "doraemon".
+    if not exact_title_token_matches and contains_similar_token(query_tokens, title_tokens):
+        score += 1.5
 
     author_tokens = [token for token in author.split() if len(token) > 2]
     score += 0.4 * sum(1 for token in author_tokens if token in query_tokens)

@@ -1,3 +1,4 @@
+import difflib
 import re
 import unicodedata
 
@@ -8,11 +9,13 @@ QUERY_STOPWORDS = {
     "cua", "duoc", "gi", "giup", "goi", "hay", "het", "khong", "la", "loai",
     "may", "minh", "mot", "nao", "nay", "nhi", "nhieu", "noi", "o", "sach",
     "shop", "so", "tap", "the", "thi", "toi", "tra", "trong", "truyen", "tu",
-    "van", "ve", "voi",
+    "van", "ve", "viet", "voi",
+    "gia", "tac",
 }
 
 
 def repair_text(text):
+    """Sua cac chuoi bi mojibake do doc sai encoding trong CSV/JSON."""
     if not isinstance(text, str):
         return ""
 
@@ -39,6 +42,7 @@ def remove_accents(text):
 
 
 def normalize_text(text):
+    """Chuan hoa ve dang khong dau, lowercase, chi giu chu/so de search."""
     repaired = repair_text(str(text)).lower().strip()
     accentless = remove_accents(repaired)
     cleaned = re.sub(r"[^a-z0-9\s]", " ", accentless)
@@ -50,7 +54,27 @@ def tokenize(text):
 
 
 def content_tokens(text):
+    """Bo stopword de keyword search khong bi nhieu boi tu chung nhu 'tac gia'."""
     return [token for token in tokenize(text) if token not in QUERY_STOPWORDS]
+
+
+def similar_token_score(left, right):
+    """Tinh do giong nhau cua token; chi ap dung token dai de tranh false positive."""
+    if len(left) < 5 or len(right) < 5:
+        return 0.0
+
+    if left == right:
+        return 1.0
+
+    return difflib.SequenceMatcher(None, left, right).ratio()
+
+
+def contains_similar_token(query_tokens, field_tokens, threshold=0.84):
+    for query_token in query_tokens:
+        for field_token in field_tokens:
+            if similar_token_score(query_token, field_token) >= threshold:
+                return True
+    return False
 
 
 def contains_any(text, phrases):

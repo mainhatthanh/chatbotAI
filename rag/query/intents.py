@@ -23,6 +23,7 @@ DESCRIPTION_HINT_PHRASES = [
 
 
 def detect_book_intent(query):
+    """Nhan dien query lien quan den sach de pipeline uu tien book retriever."""
     normalized = normalize_text(query)
 
     strong_book_phrases = [
@@ -49,6 +50,7 @@ def detect_book_intent(query):
 
 
 def detect_faq_intent(query):
+    """Nhan dien cac cau hoi van hanh cua shop: giao hang, thanh toan, doi tra."""
     return contains_any(query, [
         "xin chao", "chao", "hello", "hi", "shop oi", "ad oi",
         "ban la ai", "ban giup duoc gi", "can ho tro",
@@ -60,6 +62,7 @@ def detect_faq_intent(query):
 
 
 def detect_list_intent(query):
+    """Query dang yeu cau danh sach/goi y se tra ve nhieu sach."""
     return contains_any(query, [
         "goi y", "de xuat", "danh sach", "nhung sach", "co sach nao",
         "sach nao", "truyen nao", "nhung cuon nao", "cuon nao",
@@ -124,4 +127,5 @@ def detect_stock_intent(query):
 
 
 def detect_author_intent(query):
+    """Cau hoi tac gia can tra loi mot sach cu the."""
     return contains_any(query, ["tac gia", "viet boi", "ai viet", "cua ai"])

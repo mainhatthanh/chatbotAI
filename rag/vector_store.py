@@ -3,12 +3,15 @@ from sklearn.neighbors import NearestNeighbors
 
 
 class VectorStore:
+    """Wrapper nho quanh NearestNeighbors de search embedding bang cosine distance."""
+
     def __init__(self):
         self.model = NearestNeighbors(metric="cosine")
         self.documents = []
         self.embeddings = None
 
     def add_documents(self, embeddings, documents):
+        """Fit index moi moi khi pipeline load lai data."""
         self.embeddings = embeddings
         self.documents = documents
         self.model.fit(embeddings)
@@ -32,6 +35,7 @@ class VectorStore:
         return results
 
     def save(self, model_path, docs_path):
+        """Luu index neu sau nay muon preload vector store ra file."""
         with open(model_path, "wb") as f:
             pickle.dump(self.model, f)
 
@@ -40,6 +44,7 @@ class VectorStore:
 
     @classmethod
     def load(cls, model_path, docs_path):
+        """Load index da save truoc do."""
         store = cls()
 
         with open(model_path, "rb") as f:
