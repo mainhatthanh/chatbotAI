@@ -4,6 +4,7 @@ from rag.query.normalize import (
     extract_volume_number,
     normalize_text,
 )
+from rag.query.intents import detect_description_intent
 
 
 def score_book_match(query, metadata):
@@ -22,7 +23,8 @@ def score_book_match(query, metadata):
         score += 2.0
     if category and category in query_norm:
         score += 1.0
-    if description and query_norm and query_norm in description:
+    description_intent = detect_description_intent(query)
+    if description_intent and description and query_norm and query_norm in description:
         score += 3.2
 
     title_tokens = [token for token in title.split() if len(token) > 2 and token != "tap"]
@@ -36,8 +38,9 @@ def score_book_match(query, metadata):
     author_tokens = [token for token in author.split() if len(token) > 2]
     score += 0.4 * sum(1 for token in author_tokens if token in query_tokens)
 
-    description_tokens = [token for token in description.split() if len(token) > 2]
-    score += 0.8 * sum(1 for token in description_tokens if token in query_tokens)
+    if description_intent:
+        description_tokens = [token for token in description.split() if len(token) > 2]
+        score += 0.8 * sum(1 for token in description_tokens if token in query_tokens)
 
     query_volume = extract_volume_number(query)
     title_volume = extract_volume_number(title)

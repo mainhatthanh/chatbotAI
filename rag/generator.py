@@ -2,6 +2,7 @@ from rag.book_response import (
     filter_books_for_display,
     format_book_list,
     matched_books,
+    no_book_match_message,
     no_description_match_message,
     should_list_books,
 )
@@ -66,7 +67,10 @@ class Generator:
         if self._should_return_book_list(query, top_books):
             if detect_description_intent(query) and not matched_books(query, top_books):
                 return no_description_match_message()
-            return format_book_list(filter_books_for_display(query, top_books))
+            display_books = filter_books_for_display(query, top_books)
+            if not display_books:
+                return no_book_match_message()
+            return format_book_list(display_books)
 
         return self._answer_single_book(query, info)
 

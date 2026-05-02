@@ -8,6 +8,7 @@ from rag.query import (
 )
 
 MAX_BOOKS_IN_RESPONSE = 5
+UNKNOWN_VALUE = "Kh\u00f4ng r\u00f5"
 
 
 def score_books(query, books):
@@ -57,21 +58,28 @@ def filter_books_for_display(query, books):
     if detect_description_intent(query) or detect_category_intent(query):
         return matched
 
+    if detect_existence_intent(query):
+        return matched
+
     return matched or ranked
 
 
 def no_description_match_message():
-    return "Xin lỗi, tôi chưa tìm thấy cuốn sách nào khớp rõ với mô tả đó."
+    return "Xin l\u1ed7i, t\u00f4i ch\u01b0a t\u00ecm th\u1ea5y cu\u1ed1n s\u00e1ch n\u00e0o kh\u1edbp r\u00f5 v\u1edbi m\u00f4 t\u1ea3 \u0111\u00f3."
+
+
+def no_book_match_message():
+    return "Xin l\u1ed7i, hi\u1ec7n t\u1ea1i c\u1eeda h\u00e0ng ch\u01b0a c\u00f3 s\u00e1ch b\u1ea1n y\u00eau c\u1ea7u."
 
 
 def format_book_list(books):
-    lines = ["Tôi tìm thấy những sách phù hợp:"]
+    lines = ["T\u00f4i t\u00ecm th\u1ea5y nh\u1eefng s\u00e1ch ph\u00f9 h\u1ee3p:"]
     for book in books[:MAX_BOOKS_IN_RESPONSE]:
         meta = book.get("metadata", {})
         lines.append(
-            f"- {meta.get('title', 'Không rõ')} | tác giả: {meta.get('author', 'Không rõ')} | "
-            f"thể loại: {meta.get('category', 'Không rõ')} | giá: {meta.get('price', 'Không rõ')} đồng | "
-            f"còn: {meta.get('stock', 'Không rõ')}"
+            f"- {meta.get('title', UNKNOWN_VALUE)} | t\u00e1c gi\u1ea3: {meta.get('author', UNKNOWN_VALUE)} | "
+            f"th\u1ec3 lo\u1ea1i: {meta.get('category', UNKNOWN_VALUE)} | gi\u00e1: {meta.get('price', UNKNOWN_VALUE)} \u0111\u1ed3ng | "
+            f"c\u00f2n: {meta.get('stock', UNKNOWN_VALUE)}"
         )
     return "\n".join(lines)
 

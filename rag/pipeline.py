@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from rag.data_loader import load_all_documents
 from rag.embedder import Embedder
 from rag.generator import Generator
@@ -8,6 +10,9 @@ from rag.vector_store import VectorStore
 
 
 DEFAULT_TOP_K = 3
+VECTORSTORE_DIR = Path("vectorstore")
+FAISS_INDEX_PATH = VECTORSTORE_DIR / "faiss.index"
+DOCUMENTS_PATH = VECTORSTORE_DIR / "documents.pkl"
 
 
 class RAGPipeline:
@@ -16,15 +21,15 @@ class RAGPipeline:
 
         self.book_documents = all_docs["books"]
         self.faq_documents = all_docs["faq"]
+        self.all_documents = self.book_documents + self.faq_documents
 
         # Dung chung mot Embedder de tranh load SentenceTransformer nhieu lan.
         self.embedder = Embedder()
-        self.books_store = self._build_store(self.book_documents)
-        self.faq_store = self._build_store(self.faq_documents)
+        self.store = self._load_or_build_store(self.all_documents, [books_path, faq_path])
 
         # Moi retriever search trong mot tap du lieu rieng, sau do reranker tron ket qua.
-        self.books_retriever = Retriever(self.books_store, self.book_documents, self.embedder)
-        self.faq_retriever = Retriever(self.faq_store, self.faq_documents, self.embedder)
+        self.books_retriever = Retriever(self.store, self.book_documents, self.embedder, source_filter="books")
+        self.faq_retriever = Retriever(self.store, self.faq_documents, self.embedder, source_filter="faq")
         self.generator = Generator()
 
     def _build_store(self, documents):
@@ -34,6 +39,24 @@ class RAGPipeline:
         store = VectorStore()
         store.add_documents(embeddings, documents)
         return store
+
+    def _load_or_build_store(self, documents, source_paths):
+        """Load FAISS store tu disk neu con moi; nguoc lai build va save lai."""
+        VECTORSTORE_DIR.mkdir(exist_ok=True)
+        if self._store_is_fresh(source_paths):
+            return VectorStore.load(FAISS_INDEX_PATH, DOCUMENTS_PATH)
+
+        store = self._build_store(documents)
+        store.save(FAISS_INDEX_PATH, DOCUMENTS_PATH)
+        return store
+
+    def _store_is_fresh(self, source_paths):
+        if not FAISS_INDEX_PATH.exists() or not DOCUMENTS_PATH.exists():
+            return False
+
+        store_mtime = min(FAISS_INDEX_PATH.stat().st_mtime, DOCUMENTS_PATH.stat().st_mtime)
+        latest_source_mtime = max(Path(path).stat().st_mtime for path in source_paths)
+        return store_mtime >= latest_source_mtime
 
     def is_book_query(self, query: str):
         return detect_book_intent(query)

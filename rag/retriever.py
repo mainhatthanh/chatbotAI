@@ -31,10 +31,11 @@ TOKEN_WEIGHTS = {
 class Retriever:
     """Hybrid retriever: semantic search + keyword search tren cung tap document."""
 
-    def __init__(self, store: VectorStore, documents=None, embedder=None):
+    def __init__(self, store: VectorStore, documents=None, embedder=None, source_filter=None):
         self.embedder = embedder or Embedder()
         self.store = store
         self.documents = documents or []
+        self.source_filter = source_filter
 
     def retrieve(self, query: str, top_k=DEFAULT_TOP_K):
         return self.retrieve_hybrid(query, top_k=top_k)
@@ -51,37 +52,17 @@ class Retriever:
 
         return self._rank(scored)[:top_k]
 
-    def keyword_search_books(self, query: str, top_k=DEFAULT_TOP_K):
-        """Chi keyword search sach; huu ich khi can loc theo title/category ro rang."""
-        query_norm = normalize_text(query)
-        query_tokens = content_tokens(query)
-        matched = []
-
-        for doc in self.documents:
-            if doc.get("source") != "books":
-                continue
-
-            score = self._keyword_score(query_norm, query_tokens, doc)
-            if score <= 0:
-                continue
-
-            matched.append({
-                "document": doc,
-                "distance": 1 / (score + 1),
-                "semantic_score": 0.0,
-                "keyword_score": score,
-                "hybrid_score": score,
-            })
-
-        return sorted(matched, key=lambda item: item["hybrid_score"], reverse=True)[:top_k]
-
     def _semantic_candidates(self, query, semantic_k):
         """Chuyen cosine distance thanh semantic_score: diem cao hon la gan hon."""
         query_embedding = self.embedder.encode_query(query)
         scored = {}
 
-        for item in self.store.search(query_embedding, top_k=semantic_k):
+        semantic_limit = len(self.store.documents) if self.source_filter else semantic_k
+        for item in self.store.search(query_embedding, top_k=semantic_limit):
             doc = item["document"]
+            if self.source_filter and doc.get("source") != self.source_filter:
+                continue
+
             distance = float(item["distance"])
             score = max(0.0, 1.0 - distance)
             scored[doc["id"]] = {
@@ -91,6 +72,9 @@ class Retriever:
                 "keyword_score": 0.0,
                 "hybrid_score": score,
             }
+
+            if len(scored) >= semantic_k:
+                break
 
         return scored
 

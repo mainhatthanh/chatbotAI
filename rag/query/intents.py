@@ -1,3 +1,5 @@
+import re
+
 from rag.query.normalize import contains_any, normalize_text
 
 
@@ -72,7 +74,7 @@ def detect_list_intent(query):
 
 def detect_existence_intent(query):
     normalized = normalize_text(query)
-    return normalized.startswith("co ") and normalized.endswith(" khong")
+    return bool(re.search(r"\bco\b.+\bkhong\b", normalized))
 
 
 def detect_category_intent(query):
